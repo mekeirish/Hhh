@@ -12,5 +12,13 @@
     <p>Ceci est une page HTML très simple.</p>
 
 <script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));}</script>
+<button id="installBtn" hidden>Installer</button>
+<script>
+let dp;
+addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); dp = e; installBtn.hidden = false;
+});
+installBtn.onclick = async () => { dp.prompt(); await dp.userChoice; };
+</script>
 </body>
 </html>
